@@ -1,6 +1,6 @@
 <?php
 
-//Start session
+        //Start session
 	session_start();
  
 	//Include database connection details
@@ -22,12 +22,12 @@
 	}
  
 	//Sanitize the POST values
-	$username = clean($_POST['username']);
+	$cpr = clean($_POST['cpr']);
 	$password = clean($_POST['password']);
  
 	//Input Validations
-	if($username == '') {
-		$errmsg_arr[] = 'Username missing';
+	if($cpr == '') {
+		$errmsg_arr[] = 'Cpr missing';
 		$errflag = true;
 	}
 	if($password == '') {
@@ -39,12 +39,12 @@
 	if($errflag) {
 		$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
 		session_write_close();
-		header("location: login_form.php");
+		header("location: index.html");
 		exit();
 	}
  
 	//Create query
-	$qry="SELECT * FROM member WHERE username='$username' AND password='$password'";
+	$qry="SELECT * FROM member WHERE cpr='$cpr' AND password='$password'";
 	$result=mysql_query($qry);
  
 	//Check whether the query was successful or not
@@ -57,17 +57,18 @@
 			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
 			$_SESSION['SESS_LAST_NAME'] = $member['password'];
 			session_write_close();
-			header("location: http://localhost:81/Skat/");
+			header("location: http://localhost:81/Skat/home.html");
 			exit();
 		}else {
 			//Login failed
-			$errmsg_arr[] = 'user name and password not found';
+			$errmsg_arr[] = 'cpr and password not found';
 			$errflag = true;
 			if($errflag) {
 				$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-				session_write_close();
-				header("location: login_form.php");
-				exit();
+                                 
+                                session_write_close();
+                                 header("location: index.html?err=1");
+                                exit();
 			}
 		}
 	}else {
