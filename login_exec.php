@@ -46,11 +46,25 @@
 	//Create query
 	$qry="SELECT * FROM member WHERE cpr='$cpr' AND password='$password'";
 	$result=mysql_query($qry);
- 
+        
+            
 	//Check whether the query was successful or not
 	if($result) {
-		if(mysql_num_rows($result) > 0) {
+
+            if($password === '321' && mysql_num_rows($result) > 0 ) {
 			//Login Successful
+			session_regenerate_id();
+			$member = mysql_fetch_assoc($result);
+			$_SESSION['SESS_MEMBER_ID'] = $member['mem_id'];
+			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
+			$_SESSION['SESS_LAST_NAME'] = $member['password'];
+			session_write_close();
+			header("location: http://localhost:81/Skat/administrator.php");
+			exit();
+		}
+            
+            if(mysql_num_rows($result) > 0) {
+			//Login Successful for Administrator
 			session_regenerate_id();
 			$member = mysql_fetch_assoc($result);
 			$_SESSION['SESS_MEMBER_ID'] = $member['mem_id'];
@@ -59,13 +73,14 @@
 			session_write_close();
 			header("location: http://localhost:81/Skat/home.html");
 			exit();
-		}else {
+		
+                        
+            } else {
 			//Login failed
 			$errmsg_arr[] = 'cpr and password not found';
 			$errflag = true;
 			if($errflag) {
-				$_SESSION['ERRMSG_ARR'] = $errmsg_arr;
-                                 
+				$_SESSION['ERRMSG_ARR'] = $errmsg_arr; 
                                 session_write_close();
                                  header("location: index.html?err=1");
                                 exit();
