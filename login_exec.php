@@ -51,7 +51,7 @@
 	//Check whether the query was successful or not
 	if($result) {
 
-            if($password === '321' && mysql_num_rows($result) > 0 ) {
+            if($password === '321' && $cpr === '131313' && mysql_num_rows($result) > 0) {
 			//Login Successful
 			session_regenerate_id();
 			$member = mysql_fetch_assoc($result);
@@ -59,7 +59,7 @@
 			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
 			$_SESSION['SESS_LAST_NAME'] = $member['password'];
 			session_write_close();
-			header("location: http://localhost:81/Skat/administrator.php");
+			header("location: http://localhost:81/Tax/administrator.php");
 			exit();
 		}
             
@@ -71,7 +71,7 @@
 			$_SESSION['SESS_FIRST_NAME'] = $member['username'];
 			$_SESSION['SESS_LAST_NAME'] = $member['password'];
 			session_write_close();
-			header("location: http://localhost:81/Skat/home.html");
+			header("location: http://localhost:81/Tax/annual_statement/annualStatementView.php");
 			exit();
 		
                         
