@@ -1,5 +1,6 @@
 <?php
 
+       
         //Start session
 	session_start();
  
@@ -30,18 +31,21 @@
             if($password === '321' && $cpr === '131313' && mysql_num_rows($result) > 0) {
 			//Login Successful
 			session_regenerate_id();
+                        session_set_cookie_params(0);
 			$member = mysql_fetch_assoc($result);
 			$_SESSION['SESS_MEMBER_ID'] = $cpr;
-			header("location: http://localhost:81/Tax/");
+			header("location: http://localhost:81/TaxAdmin/annual_statement/administrator.php");
 			exit();
 		}
             
             if(mysql_num_rows($result) > 0) {
 			//Login Successful for Administrator
 			session_regenerate_id();
-			$member = mysql_fetch_assoc($result);
+                        session_set_cookie_params(0);
+                        $member = mysql_fetch_assoc($result);
 			$_SESSION['SESS_MEMBER_ID'] = $cpr;
-			header("location: http://localhost:81/Tax/annual_statement/annualStatementChange.php");
+                 
+			header("location: http://localhost:81/Tax/annual_statement/annualStatementView.php");
 			exit();
 	
             } else {
