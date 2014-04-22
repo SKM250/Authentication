@@ -17,30 +17,19 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `login`
+-- Database: `cache`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- Table structure for table `cached_as`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
-  `mem_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `cached_as` (
   `cpr` int(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`mem_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`mem_id`, `cpr`, `password`) VALUES
-(1, 1603861953, '123'),
-(2, 131313, '321'),
-(3, 1005891234, '1234');
+  `link` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

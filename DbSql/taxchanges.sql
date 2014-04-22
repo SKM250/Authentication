@@ -17,30 +17,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `login`
+-- Database: `taxchanges`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- Table structure for table `taxchanges`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
-  `mem_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `taxchanges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `cpr` int(30) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`mem_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
-
---
--- Dumping data for table `member`
---
-
-INSERT INTO `member` (`mem_id`, `cpr`, `password`) VALUES
-(1, 1603861953, '123'),
-(2, 131313, '321'),
-(3, 1005891234, '1234');
+  `income_id` int(11) NOT NULL,
+  `value` double NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
